@@ -41,7 +41,7 @@ jobs:
         run: |
           echo "${version}"
         env:
-          version: ${{ env.TAG }}
+          version: ${{ TAG }}
 
       - name: Make file
         run: |
