@@ -1,0 +1,1 @@
+release: ![](https://github.com/kpaas-io/test-action/workflows/release/badge.svg)
