@@ -41,7 +41,7 @@ jobs:
         run: |
           echo "${version}"
         env:
-          - version: ${{ jobs.calc-tag.steps.calc-tag.outputs.TAG }}
+          version: ${{ jobs.calc-tag.steps.calc-tag.outputs.TAG }}
 
       - name: Make file
         run: |
