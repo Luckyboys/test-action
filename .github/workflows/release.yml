@@ -16,6 +16,7 @@ jobs:
         run: |
           tag=`date +%Y%m%d%H%M%S`
           echo "::set-output name=TAG::${tag}"
+        id: calc-tag
 
   build-image:
     if: github.repository == 'kpaas-io/test-action'
@@ -40,7 +41,7 @@ jobs:
         run: |
           echo "${version}"
         env:
-          - version: ${jobs.calc-tag.outputs.TAG}
+          - version: ${jobs.calc-tag.steps.calc-tag.outputs.TAG}
 
       - name: Make file
         run: |
