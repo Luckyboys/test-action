@@ -13,7 +13,7 @@ jobs:
     steps:
 
       - name: calc tag
-        runs: |
+        run: |
           tag=`date +%Y%m%d%H%M%S`
           echo "::set-output name=TAG::${tag}"
 
