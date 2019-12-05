@@ -36,6 +36,12 @@ jobs:
         run: |
           go get -v -t -d ./...
 
+      - name: Print Version
+        run: |
+          echo "${version}"
+        env:
+          - version: ${jobs.calc-tag.outputs.TAG}
+
       - name: Make file
         run: |
           go build main.go
