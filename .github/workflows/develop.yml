@@ -78,3 +78,35 @@ jobs:
       - name: Code test
         run: |
           go test -v ./...
+
+  code-other:
+    if: github.repository != 'kpaas-io/test-action'
+    name: Get other code
+    runs-on: ubuntu-latest
+      steps:
+
+        - uses: actions/setup-node@v1
+          with:
+            node-version: '12.x'
+
+        - name: Check out kpaas-dashboard
+          uses: actions/checkout@v2
+          with:
+            repository: kpaas-io/kpaas-dashboard
+            token: ${{ secrets.GITHUBTOKEN }}
+
+        - uses: actions/cache@v1
+          with:
+            path: ~/.npm
+            key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+            restore-keys: |
+              ${{ runner.os }}-node-
+
+        - name: Get dashboard dependencies
+          run: |
+            go get -v -t -d ./...
+            make install-client
+
+        - name: Make dashboard file
+          run: |
+            make build-cross
