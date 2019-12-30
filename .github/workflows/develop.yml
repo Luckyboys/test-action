@@ -94,6 +94,7 @@ jobs:
         with:
           repository: kpaas-io/kpaas-dashboard
           token: ${{ secrets.GITHUBTOKEN }}
+          ref: develop
 
       - uses: actions/cache@v1
         with:
